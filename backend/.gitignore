@@ -1,0 +1,6 @@
+# jetbrains setting folder
+.idea/
+
+/target
+.shuttle-storage
+Secrets*.toml
