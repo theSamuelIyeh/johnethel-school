@@ -3,19 +3,19 @@ default := ''
 
 # Run app
 run external=default port=default port-number=default:
-    cd frontend && npm run build && cd .. && concurrently "RUSTRO_DEV=true cargo watch -x 'shuttle run   ' -C backend" "cd frontend && npm run dev" -n Rust,Astro
+    cd frontend && astro build && cd .. && concurrently "RUSTRO_DEV=true cargo watch -x 'shuttle run   '" "cd frontend && astro dev" -n Rust,Astro
 
 # Build app
 build external=default port=default port-number=default:
-    cd frontend && astro build && cd .. && cd backend && cargo build --release && cd ..
+    cd frontend && astro build && cd .. && cargo build --release
 
 # Preview app
 preview external=default port=default port-number=default:
-    cd frontend && astro build && cd .. && cargo watch -x 'shuttle run   ' -C backend
+    cd frontend && astro build && cd .. && cargo watch -x 'shuttle run   '
 
 #Deploy to shuttle
 deploy:
-    cd frontend && npm run build && cd ../backend && cargo shuttle deploy && cd ..
+    cd frontend && astro build && cd .. && cargo shuttle deploy 
 
 # install
 install:

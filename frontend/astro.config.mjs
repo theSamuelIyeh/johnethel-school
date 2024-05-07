@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  outDir: "../backend/templates",
+  outDir: "../templates",
   build: {
     format: "file",
     assets: "static/_astro",
