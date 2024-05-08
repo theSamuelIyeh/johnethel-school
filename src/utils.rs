@@ -11,7 +11,6 @@ pub async fn render<T: Responder>(
 
     if dev_mode {
         let client = Client::new();
-        let url: String;
         if name == "index" {
             url = format!("http://localhost:{}/", dev_port);
         } else {
