@@ -3,11 +3,15 @@ mod routes;
 mod templates;
 mod utils;
 
-use actix_web::web::ServiceConfig;
-use shuttle_actix_web::ShuttleActixWeb;
+use actix_web::{HttpServer, App};
 
-#[shuttle_runtime::main]
-async fn main() -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
-    let config = router::init_router;
-    Ok(config.into())
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .configure(router::init_router)
+    })
+    .bind(("0.0.0.0", 8080))?
+    .run()
+    .await
 }

@@ -1,21 +1,18 @@
-# Default variable
-default := ''
-
 # Run app
-run external=default port=default port-number=default:
-    cd frontend && astro build && cd .. && concurrently "RUSTRO_DEV=true cargo watch -x 'shuttle run   '" "cd frontend && astro dev" -n Rust,Astro
+run:
+    cd frontend && astro build && cd .. && concurrently "RUSTRO_DEV=true cargo watch -x 'run'" "cd frontend && astro dev" -n Rust,Astro
 
 # Build app
-build external=default port=default port-number=default:
+build:
     cd frontend && astro build && cd .. && cargo build --release
 
 # Preview app
-preview external=default port=default port-number=default:
-    cd frontend && astro build && cd .. && cargo watch -x 'shuttle run   '
+preview:
+    cd frontend && astro build && cd .. && cargo watch -x 'run'
 
 #Deploy to shuttle
 deploy:
-    cd frontend && astro build && cd .. && cargo shuttle deploy 
+    cd frontend && astro build && cd .. && fly deploy 
 
 # install
 install:
