@@ -4,11 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-actix-files = "0.6.5"
-actix-web = "4.3.1"
-askama = { git = "https://github.com/djc/askama.git", branch = "main", features = ["with-actix-web", "mime", "mime_guess"]}
-askama_actix = { git = "https://github.com/djc/askama" }
-reqwest = "0.12.4"
-shuttle-actix-web = "0.44.0"
-shuttle-runtime = "0.44.0"
-tokio = "1.26.0"
+html-to-string-macro = "0.2.5"
+poem = { version = "3.0.0", features = ["static-files"] }
+poem-openapi = { version = "5.0.0", features = ["swagger-ui"] }
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
+tracing-subscriber = "0.3.18"

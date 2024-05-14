@@ -1,19 +1,23 @@
 # Run app
 run:
-    cd frontend && astro build && cd .. && concurrently "RUSTRO_DEV=true cargo watch -x 'run'" "cd frontend && astro dev" -n Rust,Astro
+    cargo watch -x 'run' -w src
+
+# build tailwind css classes in watch mode 
+tailwindcss:
+    cd node && npx tailwindcss -i input.css -o ../static/css/tailwind.css --watch && cd ..
+        
+# tailwindcss build
+build-tailwindcss:
+    cd node && npx tailwindcss -i input.css -o ../static/css/tailwind.css && cd ..
 
 # Build app
-build:
-    cd frontend && astro build && cd .. && cargo build --release
+build: build-tailwindcss
+    cargo build --release
 
 # Preview app
-preview:
-    cd frontend && astro build && cd .. && cargo watch -x 'run'
+preview: build
+    ./target/release/johnethel-school
 
 #Deploy to shuttle
-deploy:
-    cd frontend && astro build && cd .. && fly deploy 
-
-# install
-install:
-    cd frontend && npm install && cd ..
+deploy: build-tailwindcss
+    fly deploy 

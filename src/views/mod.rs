@@ -1,0 +1,10 @@
+pub mod about;
+pub mod blog;
+pub mod components;
+pub mod contact;
+pub mod forgot_password;
+pub mod gallery;
+pub mod index;
+pub mod layout;
+pub mod login;
+pub mod svgs;
